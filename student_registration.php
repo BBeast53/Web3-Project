@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $education_level = trim($_POST['education_level']);
     $username = trim($_POST['username']);
     $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); // Hash the password
-    
+}
     // Prepare the SQL statement to insert student details
     $stmt = $conn->prepare("INSERT INTO students (first_name, last_name, date_of_birth, email, phone_number, area_of_needed_help, education_level, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
@@ -38,7 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute the statement and check for success
     try {
         if ($stmt->execute()) {
-            echo "Student registration successful!";
+            echo "<script>
+                    alert('Student registration successful!');
+                    window.location.href = 'SignUpTutorToday.html';
+                  </script>";
+            exit;
         } else {
             throw new Exception($stmt->error);
         }
@@ -52,8 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Close the statement
     $stmt->close();
-}
-
-// Close the database connection
-$conn->close();
+    
+    // Close the database connection
+    $conn->close();
 ?>
