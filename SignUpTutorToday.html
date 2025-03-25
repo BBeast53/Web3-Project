@@ -2,55 +2,113 @@
 <html lang="en">
 <head>
     <title>Student Registration</title>
+    <link rel="stylesheet" type="text/css" href="TutorTodayCSS.css">
 </head>
 <body>
-    <h2>Student Registration Form</h2>
+    <h2>Sign Up</h2>
     <form action="student_registration.php" method="post">
-        <div>
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name" maxlength="25" required>
+        <div class="container">
+            <!-- first row -->
+            <div class="two-items-in-one-row">
+                <div class="grid-item">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" maxlength="25" required>
+                </div>
+                <div class="grid-item">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" maxlength="25" required>
+                </div>
+            </div>
+
+            <!-- second row -->
+            <div class="two-items-in-one-row">
+                <div class="grid-item">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="grid-item">
+                    <label for="phone_number">Phone Number:</label>
+                    <input type="text" id="phone_number" name="phone_number" maxlength="20">
+                </div>
+            </div>
+
+            <!-- third row -->
+            <div class="two-items-in-one-row">
+                <div class="grid-item">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" maxlength="50" required>
+                </div>
+                <div class="grid-item">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" maxlength="60" required>
+                </div>
+            </div>
+
+
+          <!-- fourth row -->
+            <div class="two-items-in-one-row">
+                <div class="grid-item">
+                    <label for="education_level">Education Level:</label>
+                    <select id="education_level" name="education_level" required>
+                        <option value="Pre-K">Pre-K</option>
+                        <option value="Elementary">Elementary</option>
+                        <option value="Middle School">Middle School</option>
+                        <option value="High School">High School</option>
+                        <option value="Associate">Associate</option>
+                        <option value="Bachelors">Bachelors</option>
+                        <option value="Masters">Masters</option>
+                    </select>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-item">
+                        <label for="date_of_birth">Date of Birth:</label>
+                        <input type="date" id="date_of_birth" name="date_of_birth" required>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="two-items-in-one-row">
+                <div class="grid-item">
+                    <label for="tutor">Tutor:</label>
+                    <input type="checkbox" id="tutor" name="tutor">
+                </div>
+                <div class="grid-item">
+                    <lable for="student">Student:</lable>
+                    <input type="checkbox" id="student" name="student" checked>
+                </div>
+            </div>
+
+            <div class="one-items-in-one-row">
+                <div class="grid-item">
+                    <label for="field_of_specialty">Field of Specialty:</label>
+                    <input type="text" id="field_of_specialty" name="field_of_specialty" maxlength="50" required>
+                </div>
+            </div>
+
+            <div class="one-items-in-one-row">
+                <div class="grid-item">
+                    <label>Available Days:</label>
+
+                    <div class="days-grid">
+                        <label><input type="checkbox" name="available_days[]" value="Monday">Monday</label>
+                        <label><input type="checkbox" name="available_days[]" value="Tuesday">Tuesday</label>
+                        <label><input type="checkbox" name="available_days[]" value="Wednesday">Wednesday</label>
+                        <label><input type="checkbox" name="available_days[]" value="Thursday">Thursday</label>
+                        <label><input type="checkbox" name="available_days[]" value="Friday">Friday</label>
+                        <label><input type="checkbox" name="available_days[]" value="Saturday">Saturday</label>
+                        <label><input type="checkbox" name="available_days[]" value="Sunday">Sunday</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- submit row -->
+            <div class="one-items-in-one-row">
+                <input type="submit" value="Register Student">
+            </div>
         </div>
-        <div>
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name" maxlength="25" required>
-        </div>
-        <div>
-            <label for="date_of_birth">Date of Birth:</label>
-            <input type="date" id="date_of_birth" name="date_of_birth" required>
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-            <label for="phone_number">Phone Number:</label>
-            <input type="text" id="phone_number" name="phone_number" maxlength="20">
-        </div>
-        <div>
-            <label for="area_of_needed_help">Area of Needed Help:</label>
-            <textarea id="area_of_needed_help" name="area_of_needed_help" rows="3"></textarea>
-        </div>
-        <div>
-            <label for="education_level">Education Level:</label>
-            <select id="education_level" name="education_level" required>
-                <option value="Pre-K">Pre-K</option>
-                <option value="Elementary">Elementary</option>
-                <option value="Middle School">Middle School</option>
-                <option value="High School">High School</option>
-                <option value="Associate">Associate</option>
-                <option value="Bachelors">Bachelors</option>
-                <option value="Masters">Masters</option>
-            </select>
-        </div>
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" maxlength="50" required>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" maxlength="60" required>
-        </div>
-        <button type="submit">Register Student</button>
+
     </form>
 </body>
 </html>
