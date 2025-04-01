@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
     <title>Student Registration</title>
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="./CSS">
+=======
+    <link rel="stylesheet" type="text/css" href="TutorTodayCSS.css">
+    <script src="TutorToday.js" defer></script>
+>>>>>>> 6ee587dcd754dfd2f377704e1766f7e4ccb68717
 </head>
 <body>
     <h2>Sign Up</h2>
@@ -44,8 +49,7 @@
                 </div>
             </div>
 
-
-          <!-- fourth row -->
+            <!-- fourth row -->
             <div class="two-items-in-one-row">
                 <div class="grid-item">
                     <label for="education_level">Education Level:</label>
@@ -66,7 +70,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="two-items-in-one-row">
                 <div class="grid-item">
@@ -89,7 +92,6 @@
             <div class="one-items-in-one-row">
                 <div class="grid-item">
                     <label>Available Days:</label>
-
                     <div class="days-grid">
                         <label><input type="checkbox" name="available_days[]" value="Monday">Monday</label>
                         <label><input type="checkbox" name="available_days[]" value="Tuesday">Tuesday</label>
@@ -99,7 +101,13 @@
                         <label><input type="checkbox" name="available_days[]" value="Saturday">Saturday</label>
                         <label><input type="checkbox" name="available_days[]" value="Sunday">Sunday</label>
                     </div>
+                </div>
+            </div>
 
+            <div class="one-items-in-one-row">
+                <div class="grid-item">
+                    <label for="price_per_hour">Price Per Hour:</label>
+                    <input type="number" id="price_per_hour" name="price_per_hour" step="0.01" min="0" required>
                 </div>
             </div>
 
@@ -108,7 +116,6 @@
                 <input type="submit" value="Register Student">
             </div>
         </div>
-
     </form>
 </body>
 </html>
