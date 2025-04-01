@@ -1,64 +1,84 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-	background-color: #f0f0f0;
-	font-family: 'Arial', sans-serif;
-	color: #333;	
+  font-family: Arial, sans-serif;
+  background-color: #eaf2fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 18px;
 }
 
-.container {
-	display: grid;
-	padding: 10px 10px;
-	background-color: #ffffff;	
-	margin: 20px auto;
-	width: 90%;
-	box-sizing: border-box;
-	overflow: hidden;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+.login-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
-.grid-item {
-	
-	/*border-bottom: 1px solid #000000;*/
-	padding: 10px;
-	font-size: 18px;
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #1f4e79;
 }
 
-.one-items-in-one-row {
-	grid-column: span 3;
-	display: grid;
-	grid-template-columns: 1fr;
+label {
+  font-weight: 600;
+  display: block;
+  text-align: left;
+  margin-top: 20px;
+  color: #1f4e79;
 }
 
-
-.two-items-in-one-row {
-	grid-column: span 3;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1.5px solid #cfd8dc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
-.three-items-in-one-row {
-	grid-column: span 3;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+input:focus {
+  border-color: #1f4e79;
+  outline: none;
 }
 
-.four-items-in-one-row {
-	grid-column: span 3;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+.button-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.days-grid {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  gap: 5px 20px; /* row gap: 5px, column gap: 20px */
+.button-container button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1f4e79;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+.button-container button:hover {
+  background-color: #174064;
+}
+
 
 .days-grid label {
   display: flex;
