@@ -37,10 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute the statement and check for success
     try {
         if ($stmt->execute()) {
-            echo "<script>
-                    alert('Student registration successful!');
-                    window.location.href = 'SignUpTutorToday.html';
-                  </script>";
+                    echo "<script>
+                        alert('Student registration successful!');
+                        window.location.href = 'LoginPage.html';
+                    </script>";
             exit;
         } else {
             throw new Exception($stmt->error);
