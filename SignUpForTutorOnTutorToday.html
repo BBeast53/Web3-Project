@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Student Registration</title>
+    <title>Tutor Registration</title>
     <link rel="stylesheet" type="text/css" href="TutorTodayCSS.css">
     <script src="TutorToday.js" defer></script>
 </head>
 <body>
-    <h2>Sign Up</h2>
-    <form action="student_registration.php" method="post">
+    <h2>Tutor Sign Up</h2>
+    <form action="tutor_registration.php" method="post">
         <div class="container">
             <!-- first row -->
             <div class="two-items-in-one-row">
@@ -60,13 +60,10 @@
                     </select>
                 </div>
                 <div class="grid-item">
-                    <div class="grid-item">
-                        <label for="date_of_birth">Date of Birth:</label>
-                        <input type="date" id="date_of_birth" name="date_of_birth" required>
-                    </div>
+                    <label for="date_of_birth">Date of Birth:</label>
+                    <input type="date" id="date_of_birth" name="date_of_birth" required>
                 </div>
             </div>
-
 
             <div class="one-items-in-one-row">
                 <div class="grid-item">
@@ -99,7 +96,7 @@
 
             <!-- submit row -->
             <div class="one-items-in-one-row">
-                <input type="submit" value="Register Student">
+                <input type="submit" value="Register Tutor">
             </div>
         </div>
     </form>
