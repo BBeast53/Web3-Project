@@ -6,21 +6,21 @@
   <link rel="stylesheet" href="CSSForLogin.css">
 </head>
 <body>
-  <div class="login-container">
-    <h2 class="title">Tutor Today Login</h2>
-    
-    <form action="login.php" method="post">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required>
+    <div class="login-container">
+        <h2 class="title">Welcome to Tutor Today!</h2>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
+        <form action="login.php" method="post">
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" required>
 
-      <div class="button-container">
-        <button type="submit">Login</button>
-        <button type="button" onclick="window.location.href='SignUpTutorToday.html'">Register</button>
-      </div>
-    </form>
-  </div>
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="button-container">
+                <button type="submit">Login</button>
+                <button type="button" onclick="window.location.href='SignUpTutorToday.html'">Register</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
