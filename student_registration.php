@@ -21,19 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date_of_birth = $_POST['date_of_birth'];
     $email = trim($_POST['email']);
     $phone = $_POST['phone_number'];
-    $area_of_needed_help = trim($_POST['area_of_needed_help']);
     $education_level = trim($_POST['education_level']);
     $username = trim($_POST['username']);
     $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); // Hash the password
 }
     // Prepare the SQL statement to insert student details
-    $stmt = $conn->prepare("INSERT INTO students (first_name, last_name, date_of_birth, email, phone_number, area_of_needed_help, education_level, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO students (first_name, last_name, date_of_birth, email, phone_number, education_level, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
     
     // Bind parameters to the SQL query
-    $stmt->bind_param("sssssssss", $first_name, $last_name, $date_of_birth, $email, $phone, $area_of_needed_help, $education_level, $username, $password);
+    $stmt->bind_param("ssssssss", $first_name, $last_name, $date_of_birth, $email, $phone, $education_level, $username, $password);
     
     // Execute the statement and check for success
     try {
