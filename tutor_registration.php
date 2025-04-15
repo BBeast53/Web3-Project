@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $price_per_hour = ($_POST['price_per_hour']);
     $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); // Hash the password
     
     // Prepare the SQL statement to insert Tutor details
     $stmt = $conn->prepare("INSERT INTO tutors (first_name, last_name, email, phone_number, date_of_birth, field_of_specialty, available_days, price_per_hour, 
