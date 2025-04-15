@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $price_per_hour = ($_POST['price_per_hour']);
     $username = trim($_POST['username']);
-    $password = trim($_POST['password']); 
+    $password = trim($_POST['password']);
     
     // Prepare the SQL statement to insert Tutor details
     $stmt = $conn->prepare("INSERT INTO tutors (first_name, last_name, email, phone_number, date_of_birth, field_of_specialty, available_days, price_per_hour, 
@@ -30,10 +30,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password);
     
     // Execute the statement and check for success
-    if ($stmt->execute()) {
-        echo "Tutor registration successful!";
-    } else {
-        echo "Error: " . $stmt->error;
+    try {
+        if ($stmt->execute()) {
+                    echo "<script>
+                        alert('Tutor registration successful!');
+                        window.location.href = 'LoginPage.html';
+                    </script>";
+            exit;
+        } else {
+            throw new Exception($stmt->error);
+        }
+    } catch (Exception $e) {
+        if ($conn->errno == 1062) {
+            echo "Error: The username is already taken. Please choose a different username.";
+        } else {
+            echo "Error: " . $e->getMessage();
+        }
     }
     
     // Close the statement
