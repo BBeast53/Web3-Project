@@ -67,15 +67,27 @@
 
             <div class="one-items-in-one-row">
                 <div class="grid-item">
-                    <label for="field_of_specialty">Field of Specialty:</label>
-                    <input type="text" id="field_of_specialty" name="field_of_specialty" maxlength="50" required>
+                    <label>Field of Specialty:</label>
+                    <div class="check-boxes-grid">
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Reading">Reading</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Writing">Writing</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Mathematics">Mathematics</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="History">History</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Language Learning">Language Learning</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Music">Music</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Technology">Technology</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Economics">Economics</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Science">Science</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Social Studies">Social Studies</label>
+                        <label><input type="checkbox" name="field_of_specialty[]" value="Arts & Humanities">Arts & Humanities</label>
+                    </div>
                 </div>
             </div>
 
             <div class="one-items-in-one-row">
                 <div class="grid-item">
                     <label>Available Days:</label>
-                    <div class="days-grid">
+                    <div class="check-boxes-grid">
                         <label><input type="checkbox" name="available_days[]" value="Monday">Monday </label>
                         <label><input type="checkbox" name="available_days[]" value="Tuesday">Tuesday</label>
                         <label><input type="checkbox" name="available_days[]" value="Wednesday">Wednesday</label>
