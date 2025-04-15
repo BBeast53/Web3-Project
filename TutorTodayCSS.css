@@ -85,14 +85,14 @@ h2 {
 	gap: 10px;
 }
 
-.days-grid {
+.check-boxes-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 8px 20px;
 	margin-top: 10px;
 }
 
-.days-grid label {
+.check-boxes-grid label {
 	display: flex;
 	align-items: center;
 	gap: 8px;
