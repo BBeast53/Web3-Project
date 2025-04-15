@@ -1,4 +1,3 @@
-
 <?php 
 include 'db_connect.php';
 
@@ -10,30 +9,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = trim($_POST['phone_number']);
     $date_of_birth = $_POST['date_of_birth'];
     $field_of_specialty = trim($_POST['field_of_specialty']);
-    $weekly_schedule = trim($_POST['available_days']);
+    
+    // Handle available_days array
+    $available_days = isset($_POST['available_days']) ? $_POST['available_days'] : [];
+    $available_days_string = implode(',', $available_days); // Convert array to comma-separated string
+    
     $price_per_hour = ($_POST['price_per_hour']);
     $username = trim($_POST['username']);
     $password = trim($_POST['password']); 
     
     // Prepare the SQL statement to insert Tutor details
-    $stmt = $conn->prepare("INSERT INTO students (first_name, last_name, email, phone_number, date_of_birth, field_of_specialty, available_days, price_per_hour, 
+    $stmt = $conn->prepare("INSERT INTO tutors (first_name, last_name, email, phone_number, date_of_birth, field_of_specialty, available_days, price_per_hour, 
     username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
+        die("Prepare failed: " . $conn->error);
     }
+    
     // Bind parameters to the SQL query
-    $stmt->bind_param("ssssssssss", $first_name, $last_name, $email, $phone_number, $date_of_birth, $field_of_specialty, $available_days, $price_per_hour, $username,
+    $stmt->bind_param("ssssssssss", $first_name, $last_name, $email, $phone, $date_of_birth, $field_of_specialty, $available_days_string, $price_per_hour, $username,
     $password);
+    
     // Execute the statement and check for success
     if ($stmt->execute()) {
-    echo "Tutor registration successful!";
+        echo "Tutor registration successful!";
     } else {
-    echo "Error: " . $stmt->error;
+        echo "Error: " . $stmt->error;
     }
+    
     // Close the statement
     $stmt->close();
-    }
-    // Close the database connection
-    $conn->close();
+}
+
+// Close the database connection
+$conn->close();
 
 ?>
