@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Tutors Today</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #e0f7fa;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .tutor {
+            border: 2px dashed #999;
+            padding: 10px;
+            text-align: center;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+            .tutor img {
+                width: 50px;
+            }
+
+        .stars {
+            color: black;
+            font-size: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h3>Subjects</h3>
+        <form id="filterForm">
+            <label><input type="checkbox" name="subject" value="Mathematics"> Mathematics</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Science"> Science</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Reading"> Reading</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Writing"> Writing</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="History"> History</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Language Learning"> Language Learning</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Music"> Music</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Technology"> Technology</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Economics"> Economics</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Social Studies"> Social Studies</label>
+            <br>
+            <label><input type="checkbox" name="subject" value="Arts & Humanities"> Arts & Humanities</label>
+            <br>
+        </form>
+    </div>
+
+    <div class="content" id="tutorGrid">
+        <!-- Example profiles -->
+        <div class="tutor" data-subjects="Mathematics" onclick="location.href='profile1.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Rebecca Bagel</strong><br>Math Tutor</div>
+            <div class="stars">★★★★★</div>
+        </div>
+
+        <div class="tutor" data-subjects="Science" onclick="location.href='profile2.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Marcus Pan</strong><br>Chemistry Tutor</div>
+            <div class="stars">★★★★☆</div>
+        </div>
+
+        <div class="tutor" data-subjects="Mathematics" onclick="location.href='profile3.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Linda White</strong><br>Math Tutor</div>
+            <div class="stars">★★★★☆</div>
+        </div>
+
+        <div class="tutor" data-subjects="Science" onclick="location.href='profile4.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Ben Mark</strong><br>Chemistry Tutor</div>
+            <div class="stars">★★★☆☆</div>
+        </div>
+
+        <div class="tutor" data-subjects="Mathematics" onclick="location.href='profile5.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Lanna Ding</strong><br>Math Tutor</div>
+            <div class="stars">★★★★★</div>
+        </div>
+
+        <div class="tutor" data-subjects="Science" onclick="location.href='profile6.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Bigby Wolf</strong><br>Chemistry Tutor</div>
+            <div class="stars">★★☆☆☆</div>
+        </div>
+    </div>
+
+    <script>
+    const checkboxes = document.querySelectorAll('input[name="subject"]');
+    const tutors = document.querySelectorAll('.tutor');
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+        tutors.forEach(tutor => {
+          const subjects = tutor.dataset.subjects.split(',');
+          tutor.classList.toggle('hidden', selected.length > 0 && !subjects.some(s => selected.includes(s)));
+        });
+      });
+    });
+    </script>
+</body>
+</html>
