@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $phone = trim($_POST['phone_number']);
     $date_of_birth = $_POST['date_of_birth'];
-
+    $about = trim($_POST['about']);
     // Handle field_of_specialty array
     $field_of_specialty = isset($_POST['field_of_specialty']) 
         ? (is_array($_POST['field_of_specialty']) 
@@ -30,14 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); // Hash the password
 
     // Prepare the SQL statement to insert Tutor details
-    $stmt = $conn->prepare("INSERT INTO tutors (first_name, last_name, email, phone_number, date_of_birth, field_of_specialty, available_days, price_per_hour, 
-    username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO tutors (first_name, last_name, email, phone_number, date_of_birth, about, field_of_specialty, available_days, price_per_hour, 
+    username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
     // Bind parameters to the SQL query
-    $stmt->bind_param("ssssssssss", $first_name, $last_name, $email, $phone, $date_of_birth, $field_of_specialty_string, $available_days_string, $price_per_hour, $username,
+    $stmt->bind_param("sssssssssss", $first_name, $last_name, $email, $phone, $date_of_birth, $about, $field_of_specialty_string, $available_days_string, $price_per_hour, $username,
     $password);
 
     // Execute the statement and check for success
