@@ -78,45 +78,25 @@
             <br>
         </form>
     </div>
-
     <div class="content" id="tutorGrid">
-        <div class="tutor" data-subjects="Mathematics" data-rating="5" onclick="location.href='profile1.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Rebecca Bagel</strong><br>Math Tutor</div>
-            <div class="stars">★★★★★</div>
-        </div>
-
-        <div class="tutor" data-subjects="Mathematics" data-rating="5" onclick="location.href='profile5.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Lanna Ding</strong><br>Math Tutor</div>
-            <div class="stars">★★★★★</div>
-        </div>
-
-        <div class="tutor" data-subjects="Science" data-rating="4" onclick="location.href='profile2.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Marcus Pan</strong><br>Chemistry Tutor</div>
-            <div class="stars">★★★★☆</div>
-        </div>
-
-        <div class="tutor" data-subjects="Mathematics" data-rating="4" onclick="location.href='profile3.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Linda White</strong><br>Math Tutor</div>
-            <div class="stars">★★★★☆</div>
-        </div>
-
-        <div class="tutor" data-subjects="Science" data-rating="3" onclick="location.href='profile4.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Ben Mark</strong><br>Chemistry Tutor</div>
-            <div class="stars">★★★☆☆</div>
-        </div>
-
-        <div class="tutor" data-subjects="Science" data-rating="2" onclick="location.href='profile6.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Bigby Wolf</strong><br>Chemistry Tutor</div>
-            <div class="stars">★★☆☆☆</div>
-        </div>
+        <!-- Tutor data will be loaded here -->
     </div>
 
+    <script>
+        // Fetch tutor data from findTutors.php
+        function loadTutors() {
+            fetch('findTutors.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('tutorGrid').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching tutor data:', error));
+        }
+
+        // Load tutors on page load
+        window.onload = loadTutors;
+    </script>
+     
     <script>
         const checkboxes = document.querySelectorAll('input[name="subject"]');
         const tutorGrid = document.getElementById('tutorGrid');
