@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Tutors Today</title>
-
+    <title>Tutor Filter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -81,38 +80,37 @@
     </div>
 
     <div class="content" id="tutorGrid">
-        <!-- Example profiles -->
-        <div class="tutor" data-subjects="Mathematics" onclick="location.href='profile1.html'">
+        <div class="tutor" data-subjects="Mathematics" data-rating="5" onclick="location.href='profile1.html'">
             <img src="Smiley-Sunglasses.png" alt="Smiley">
             <div><strong>Rebecca Bagel</strong><br>Math Tutor</div>
             <div class="stars">★★★★★</div>
         </div>
 
-        <div class="tutor" data-subjects="Science" onclick="location.href='profile2.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Marcus Pan</strong><br>Chemistry Tutor</div>
-            <div class="stars">★★★★☆</div>
-        </div>
-
-        <div class="tutor" data-subjects="Mathematics" onclick="location.href='profile3.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Linda White</strong><br>Math Tutor</div>
-            <div class="stars">★★★★☆</div>
-        </div>
-
-        <div class="tutor" data-subjects="Science" onclick="location.href='profile4.html'">
-            <img src="Smiley-Sunglasses.png" alt="Smiley">
-            <div><strong>Ben Mark</strong><br>Chemistry Tutor</div>
-            <div class="stars">★★★☆☆</div>
-        </div>
-
-        <div class="tutor" data-subjects="Mathematics" onclick="location.href='profile5.html'">
+        <div class="tutor" data-subjects="Mathematics" data-rating="5" onclick="location.href='profile5.html'">
             <img src="Smiley-Sunglasses.png" alt="Smiley">
             <div><strong>Lanna Ding</strong><br>Math Tutor</div>
             <div class="stars">★★★★★</div>
         </div>
 
-        <div class="tutor" data-subjects="Science" onclick="location.href='profile6.html'">
+        <div class="tutor" data-subjects="Science" data-rating="4" onclick="location.href='profile2.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Marcus Pan</strong><br>Chemistry Tutor</div>
+            <div class="stars">★★★★☆</div>
+        </div>
+
+        <div class="tutor" data-subjects="Mathematics" data-rating="4" onclick="location.href='profile3.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Linda White</strong><br>Math Tutor</div>
+            <div class="stars">★★★★☆</div>
+        </div>
+
+        <div class="tutor" data-subjects="Science" data-rating="3" onclick="location.href='profile4.html'">
+            <img src="Smiley-Sunglasses.png" alt="Smiley">
+            <div><strong>Ben Mark</strong><br>Chemistry Tutor</div>
+            <div class="stars">★★★☆☆</div>
+        </div>
+
+        <div class="tutor" data-subjects="Science" data-rating="2" onclick="location.href='profile6.html'">
             <img src="Smiley-Sunglasses.png" alt="Smiley">
             <div><strong>Bigby Wolf</strong><br>Chemistry Tutor</div>
             <div class="stars">★★☆☆☆</div>
@@ -120,18 +118,28 @@
     </div>
 
     <script>
-    const checkboxes = document.querySelectorAll('input[name="subject"]');
-    const tutors = document.querySelectorAll('.tutor');
+        const checkboxes = document.querySelectorAll('input[name="subject"]');
+        const tutorGrid = document.getElementById('tutorGrid');
 
-    checkboxes.forEach(cb => {
-      cb.addEventListener('change', () => {
-        const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
-        tutors.forEach(tutor => {
-          const subjects = tutor.dataset.subjects.split(',');
-          tutor.classList.toggle('hidden', selected.length > 0 && !subjects.some(s => selected.includes(s)));
-        });
-      });
-    });
+        function updateVisibility() {
+            const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+            const tutors = tutorGrid.querySelectorAll('.tutor');
+
+            tutors.forEach(tutor => {
+                const subjects = tutor.dataset.subjects.split(',');
+                tutor.classList.toggle('hidden', selected.length > 0 && !subjects.some(s => selected.includes(s)));
+            });
+        }
+
+        function sortTutorsByRating() {
+            const tutors = Array.from(tutorGrid.children);
+            tutors.sort((a, b) => parseInt(b.dataset.rating) - parseInt(a.dataset.rating));
+            tutors.forEach(tutor => tutorGrid.appendChild(tutor));
+        }
+
+        checkboxes.forEach(cb => cb.addEventListener('change', updateVisibility));
+
+        sortTutorsByRating();
     </script>
 </body>
 </html>
