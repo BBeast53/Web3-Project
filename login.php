@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("SELECT * FROM students WHERE username = ?");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
-    }
+    } 
 
     // Bind the username parameter
     $stmt->bind_param("s", $username);
@@ -33,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['password'])) {
             // Password is correct, set session variables
             $_SESSION['username'] = $user['username'];
-            $_SESSION['user_id'] = $user['id']; // Assuming the table has an 'id' column
+            $_SESSION['primary_id'] = $user['primary_id']; // Assuming the table has an 'id' column
             $_SESSION['role'] = 'student'; // Set role as student
 
             // Redirect to a student dashboard or home page
-            header("Location: student_dashboard.php");
+            header("Location: StudentProfilePage.html?primary_id=" . $_SESSION['primary_id']);
             exit();
         } else {
             // Invalid password
@@ -67,11 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $user['password'])) {
                 // Password is correct, set session variables
                 $_SESSION['username'] = $user['username'];
-                $_SESSION['user_id'] = $user['id']; // Assuming the table has an 'id' column
+                $_SESSION['primary_id'] = $user['primary_id']; // Assuming the table has an 'id' column
                 $_SESSION['role'] = 'tutor'; // Set role as tutor
 
                 // Redirect to a tutor dashboard or home page
-                header("Location: tutor_dashboard.php");
+                header("Location: TutorProfilePage.html");
                 exit();
             } else {
                 // Invalid password

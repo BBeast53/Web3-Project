@@ -11,12 +11,79 @@
   <a href="LoginPage.html" class="logout-button">Log Out</a>
   
   <div class="grid-container">
+    <script>
+    // Function to get query parameters from the URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Function to load user data
+    function loadUserData() {
+        const primaryId = getQueryParam('primary_id'); // Extract primary_id from URL
+
+        if (!primaryId) {
+            console.error('No primary_id found in the URL');
+            return;
+        }
+
+        // Fetch user data from UserData.php
+        fetch(`UserData.php?primary_id=${primaryId}`)
+            .then(response => response.json())
+            .then(data => {
+            // Debugging: Log the fetched data
+            console.log('Fetched data:', data);
+
+            // Populate the HTML elements with the fetched data
+            const firstNameElement = document.querySelector('.first_name');
+            const lastNameElement = document.querySelector('.last_name');
+            const educationLevelElement = document.querySelector('.education_level');
+            const emailElement = document.querySelector('.email');
+            const phoneNumberElement = document.querySelector('.phone_number');
+            const helpList = document.querySelector('.area_of_needed_help');
+
+            // Debugging: Check if elements exist
+            console.log('Elements:', {
+                firstNameElement,
+                lastNameElement,
+                educationLevelElement,
+                emailElement,
+                phoneNumberElement,
+                helpList
+            });
+
+            if (firstNameElement) firstNameElement.textContent = data.first_name;
+            if (lastNameElement) lastNameElement.textContent = data.last_name || 'N/A';
+            if (educationLevelElement) educationLevelElement.textContent = data.education_level || 'N/A';
+            if (emailElement) emailElement.textContent = data.email || 'N/A';
+            if (phoneNumberElement) phoneNumberElement.textContent = data.phone_number || 'N/A';
+            if (helpList) helpList.textContent = data.area_of_needed_help || 'N/A';
+
+            // Populate the "Area of Needed Help" list
+            if (helpList) {
+                helpList.innerHTML = ''; // Clear existing list
+                data.area_of_needed_help.forEach(help => {
+                    if (help.trim() !== '') { // Skip empty strings
+                        const li = document.createElement('li');
+                        li.textContent = help;
+                        helpList.appendChild(li);
+                    }
+                });
+            }
+        })
+            .catch(error => console.error('Error fetching user data:', error));
+    }
+
+    // Load user data on page load
+    window.onload = loadUserData;
+</script>
 
     <!-- Profile Section -->
     <div class="grid-item item1">
       <img src="Smiley-Sunglasses.png" alt="Student Profile" class="profile-pic">
-      <h2 class="student-name">Jane Doe</h2>
-      <p class="student-grade">Grade: 10</p>
+      <h2 class="first_name"></h2>
+      <h2 class="last_name"></h2>
+      <p class="education_level"></p>
     </div>
 
     <!-- Interested In and Contact Information Section -->
@@ -26,16 +93,14 @@
         <div class="availability-box">
           <h3>Interested In</h3>
           <ul>
-            <li>Mathematics</li>
-            <li>Physics</li>
-            <li>Programming</li>
+            <li class="area_of_needed_help"></li>
           </ul>
         </div>
 
         <div class="contact-info-box">
           <h3>Contact Information</h3>
-          <p>Email: jane.doe@example.com</p>
-          <p>Phone: (555) 987-6543</p>
+          <p class="email"></p>
+          <p class="phone_number"></p>
         </div>
 
       </div>
@@ -44,7 +109,7 @@
     <!-- Previous Tutors Section -->
     <div class="grid-item item3">
       <div class="previous-tutors-box">
-        <h2 class="previous-tutors-title">Previous Tutors</h2>
+        <h2 class="previous-tutors-title">Saved Tutors</h2>
         <ul class="previous-tutors-list">
           <li>Mr. Smith (Math)</li>
           <li>Ms. Johnson (Physics)</li>
