@@ -158,4 +158,74 @@ html, body {
   color: #333;
 }
 
+/* Previous Tutors Box */
+.previous-tutors-box {
+  background-color: #ffffff;
+  padding: 30px; /* Matches the padding of .about-box */
+  border-radius: 12px; /* Matches the border-radius of .about-box */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Matches the shadow of .about-box */
+  width: 90%; /* Matches the width of .about-box */
+  margin: 20px auto; /* Centers the box horizontally and adds vertical spacing */
+  text-align: left;
+}
+
+.previous-tutors-title {
+  font-size: 26px;
+  color: #1f4e79;
+  margin-bottom: 15px;
+}
+
+.previous-tutors-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.previous-tutors-list li {
+  font-size: 20px;
+  color: #333;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.previous-tutors-list li:last-child {
+  border-bottom: none;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #1f4e79;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #1f4e79;
+  color: #ffffff;
+}
+
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #1f4e79;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #1f4e79;
+  color: #ffffff;
+}
 
