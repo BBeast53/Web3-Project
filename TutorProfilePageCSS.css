@@ -229,3 +229,26 @@ html, body {
   color: #ffffff;
 }
 
+.edit-button {
+  position: absolute;
+  top: 10px;
+  right: 20px; /* Moves the button to the top-right corner */
+  text-decoration: none;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #1f4e79;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.edit-button:hover {
+  background-color: #ffffff;
+  color: #1f4e79;
+  border: 1px solid #1f4e79;
+}
+
