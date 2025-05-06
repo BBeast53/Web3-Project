@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Profile Page</title>
-  <link rel="stylesheet" href="TutorProfilePageCSS.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Page</title>
+    <link rel="stylesheet" href="TutorProfilePageCSS.css">
 </head>
 <body>
-  <a href="findTutors.html" class="back-button"> Find a Tutor</a>
-  <a href="LoginPage.html" class="logout-button">Log Out</a>
-  
-  <div class="grid-container">
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="findTutors.html" class="nav-link">Find a Tutor</a>
+        </div>
+        <div class="nav-right">
+            <a href="LoginPage.html" class="nav-link">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="grid-container">
     <script>
     // Function to get query parameters from the URL
     function getQueryParam(param) {
@@ -103,8 +109,8 @@
           <p class="phone_number"></p>
         </div>
 
-      </div>
-    </div>
+            </div>
+        </div>
 
     <!-- Previous Tutors Section -->
     <div class="grid-item item3">
@@ -117,6 +123,6 @@
       </div>
     </div>
 
-  </div>
+    </div>
 </body>
 </html>
