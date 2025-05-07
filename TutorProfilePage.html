@@ -14,11 +14,94 @@
     </nav>
 
     <div class="grid-container">
-
+        <script>
+            // Function to get query parameters from the URL
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+        
+            // Function to load user data
+            function loadUserData() {
+                const primaryId = getQueryParam('primary_id'); // Extract primary_id from URL
+        
+                if (!primaryId) {
+                    console.error('No primary_id found in the URL');
+                    return;
+                }
+        
+                // Fetch user data from UserData.php
+                fetch(`TutorData.php?primary_id=${primaryId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                    // Debugging: Log the fetched data
+                    console.log('Fetched data:', data);
+        
+                    // Populate the HTML elements with the fetched data
+                    const firstNameElement = document.querySelector('.first_name');
+                    const lastNameElement = document.querySelector('.last_name');
+                    const aboutElement = document.querySelector('.about');
+                    const emailElement = document.querySelector('.email');
+                    const phoneNumberElement = document.querySelector('.phone_number');
+                    const helpList = document.querySelector('.field_of_specialty');
+                    const ratingElement = document.querySelector('.rating');
+                    const availableEmlement = document.querySelector('.available_days');
+        
+                    // Debugging: Check if elements exist
+                    console.log('Elements:', {
+                        firstNameElement,
+                        lastNameElement,
+                        aboutElement,
+                        phoneNumberElement,
+                        emailElement,
+                        helpList,
+                        ratingElement,
+                        availableEmlement
+                    });
+        
+                    if (firstNameElement) firstNameElement.textContent = data.first_name || 'N/A';
+                    if (lastNameElement) lastNameElement.textContent = data.last_name || 'N/A';
+                    if (aboutElement) aboutElement.textContent = data.about || 'N/A';
+                    if (emailElement) emailElement.textContent = data.email || 'N/A';
+                    if (phoneNumberElement) phoneNumberElement.textContent = data.phone_number || 'N/A';
+                    if (helpList) helpList.textContent = `${data.field_of_specialty || 'N/A'} Tutor`;
+                    if (availableEmlement) availableEmlement.textContent = data.available_days || 'N/A';
+                    if (ratingElement) phoneNumberElement.textContent = data.rating || 'N/A';
+        
+                    // Populate the "Area of Needed Help" list
+                    if (helpList) {
+                        helpList.innerHTML = ''; // Clear existing list
+                        data.field_of_specialty.forEach(help => {
+                            if (help.trim() !== '') { // Skip empty strings
+                                const li = document.createElement('li');
+                                li.textContent = help;
+                                helpList.appendChild(li);
+                            }
+                        });
+                    }
+                    if (availableEmlement) {
+                        availableEmlement.innerHTML = ''; // Clear existing list
+                        data.available_days.forEach(help => {
+                            if (help.trim() !== '') { // Skip empty strings
+                                const li = document.createElement('li');
+                                li.textContent = help;
+                                availableEmlement.appendChild(li);
+                            }
+                        });
+                    }
+                })
+                    .catch(error => console.error('Error fetching user data:', error));
+            }
+        
+            // Load user data on page load
+            window.onload = loadUserData;
+        </script>
         <div class="grid-item item1">
             <img src="Smiley-Sunglasses.png" alt="Tutor Profile" class="profile-pic">
-            <h2 class="tutor-name">Bartholomew ChadWorth</h2>
-            <p class="tutor-subtitle">Math Tutor</p>
+            <h2 class="first_name"></h2>
+            <h2 class="last_name"></h2>
+            <p class="field_of_specialty"></p>
+            <p>Tutor</p>
             <div class="star-rating">★★★★★</div>
         </div>
 
@@ -28,16 +111,14 @@
                 <div class="availability-box">
                     <h3>Available Days</h3>
                     <ul>
-                        <li>Monday</li>
-                        <li>Wednesday</li>
-                        <li>Friday</li>
+                        <li class="available_days"> </li>
                     </ul>
                 </div>
 
                 <div class="contact-info-box">
                     <h3>Contact</h3>
-                    <p>Email: bartholomew@example.com</p>
-                    <p>Phone: (555) 123-4567</p>
+                    <p class="email"></p>
+                    <p class="phone_number"></p>
                 </div>
 
             </div>
@@ -46,12 +127,8 @@
         <div class="grid-item item3">
             <div class="about-box">
                 <h2 class="about-title">About</h2>
-                <p class="about-paragraph">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus lacinia odio vitae vestibulum vestibulum. Cras
-                    venenatis euismod malesuada. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Vivamus lacinia odio vitae
-                    vestibulum vestibulum. Cras venenatis euismod malesuada.
+                <p class="about">
+                    
                 </p>
             </div>
         </div>
