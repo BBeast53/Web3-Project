@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['role'] = 'tutor'; // Set role as tutor
 
                 // Redirect to a tutor dashboard or home page
-                header("Location: TutorProfilePage.html");
+                header("Location: TutorProfilePage.html?primary_id=" . $_SESSION['primary_id']);
                 exit();
             } else {
                 // Invalid password
