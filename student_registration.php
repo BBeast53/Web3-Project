@@ -22,17 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $phone = $_POST['phone_number'];
     $education_level = trim($_POST['education_level']);
+    $area_of_needed_help = isset($_POST['area_of_needed_help']) 
+        ? (is_array($_POST['area_of_needed_help']) 
+            ? $_POST['area_of_needed_help'] 
+            : [$_POST['area_of_needed_help']]) 
+        : [];
+    $area_of_needed_help = implode(',', $area_of_needed_help); 
     $username = trim($_POST['username']);
     $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); // Hash the password
 }
     // Prepare the SQL statement to insert student details
-    $stmt = $conn->prepare("INSERT INTO students (first_name, last_name, date_of_birth, email, phone_number, education_level, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO students (first_name, last_name, date_of_birth, email, phone_number, education_level, area_of_needed_help,
+         username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
     
     // Bind parameters to the SQL query
-    $stmt->bind_param("ssssssss", $first_name, $last_name, $date_of_birth, $email, $phone, $education_level, $username, $password);
+    $stmt->bind_param("sssssssss", $first_name, $last_name, $date_of_birth, $email, $phone, $education_level, $area_of_needed_help, $username, $password);
     
     // Execute the statement and check for success
     try {
@@ -40,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<script>
                         alert('Student registration successful!');
                         window.location.href = 'LoginPage.html';
-                    </script>";
+                    </script>"; 
             exit;
         } else {
             throw new Exception($stmt->error);
